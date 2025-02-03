@@ -1,0 +1,57 @@
+li ke Ul main #Id milti  hai  
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the current URL path
+    var currentPath = window.location.pathname;
+
+    // Normalize the path (remove trailing slashes)
+    if (currentPath.endsWith('/')) {
+        currentPath = currentPath.slice(0, -1);
+    }
+
+    // Define the menu selectors for desktop and mobile
+    var menuSelectors = ['#menu-header-menu', '#menu-header-menu-1'];
+
+    // Function to update the menu items
+    function updateMenu(menuSelector) {
+        // Select all menu items within the specified menu
+        var menuItems = document.querySelectorAll(menuSelector + ' .menu-item a');
+
+        // Iterate over each menu item
+        menuItems.forEach(function(menuItem) {
+            // Get the href attribute of the menu item
+            var menuItemHref = menuItem.getAttribute('href');
+
+            // Normalize the href (remove trailing slashes)
+            if (menuItemHref.endsWith('/')) {
+                menuItemHref = menuItemHref.slice(0, -1);
+            }
+
+            // Check if the href matches the current path
+            if (menuItemHref === window.location.origin + currentPath) {
+                // Add the `current-menu-item` class to the parent <li> element
+                menuItem.parentElement.classList.add('current-menu-item');
+            } else {
+                // Remove the `current-menu-item` class from other <li> elements
+                menuItem.parentElement.classList.remove('current-menu-item');
+            }
+        });
+    }
+
+    // Update menu items for both desktop and mobile menus
+    menuSelectors.forEach(function(selector) {
+        updateMenu(selector);
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
